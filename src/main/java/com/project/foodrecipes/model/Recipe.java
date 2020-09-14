@@ -4,12 +4,16 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.project.foodrecipes.enums.Difficulty;
 
 @Entity
 public class Recipe {
@@ -30,7 +34,10 @@ public class Recipe {
 	private Set<Ingredient> ingredient;
 	
 	@Lob
-	private Byte[] image;
+	private Byte[] image;	
+	
+	@Enumerated(value = EnumType.STRING)
+	private Difficulty difficulty;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Notes notes;	
@@ -83,11 +90,23 @@ public class Recipe {
 	public void setDirections(String directions) {
 		this.directions = directions;
 	}
+	public Set<Ingredient> getIngredient() {
+		return ingredient;
+	}
+	public void setIngredient(Set<Ingredient> ingredient) {
+		this.ingredient = ingredient;
+	}
 	public Byte[] getImage() {
 		return image;
 	}
 	public void setImage(Byte[] image) {
 		this.image = image;
+	}
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+	public void setDifficulty(Difficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 	public Notes getNotes() {
 		return notes;
