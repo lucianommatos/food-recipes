@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import org.thymeleaf.standard.expression.Each;
 
 import com.project.foodrecipes.enums.Difficulty;
 import com.project.foodrecipes.model.Category;
@@ -89,7 +88,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
 		guacamoleRecipe.setDifficulty(Difficulty.EASY);
 		
 		guacamoleRecipe.setNotes(new Notes(guacamoleRecipe,"Be careful handling chiles if using. Wash your hands thoroughly after handling and "
-				+ "do not touch your eyes or the area near your eyes with your hands for several hours."));
+				+ "\n" + "do not touch your eyes or the area near your eyes with your hands for several hours."));
 		
 		recipeRepository.save(guacamoleRecipe);
 	}
