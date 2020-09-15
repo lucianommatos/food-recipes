@@ -1,5 +1,6 @@
 package com.project.foodrecipes.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,7 +18,16 @@ public class Category {
 	private String description;
 	
 	@ManyToMany(mappedBy = "categories")
-	private Set<Recipe> recipes;
+	private Set<Recipe> recipes = new HashSet<>();
+	
+	public Category() {
+		
+	}
+
+	public Category(String description, Set<Recipe> recipes) {
+		this.description = description;
+		this.recipes = recipes;
+	}
 
 	public Long getId() {
 		return id;

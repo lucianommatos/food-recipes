@@ -1,5 +1,6 @@
 package com.project.foodrecipes.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -31,10 +32,12 @@ public class Recipe {
 	private Integer servings;
 	private String source;
 	private String url;
+	
+	@Lob
 	private String directions;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private Set<Ingredient> ingredient;
+	private Set<Ingredient> ingredient = new HashSet<>();
 	
 	@Lob
 	private Byte[] image;	
@@ -49,8 +52,28 @@ public class Recipe {
 	@JoinTable(name = "recipe_category",
 			joinColumns = @JoinColumn(name = "recipe_id"), 
 			inverseJoinColumns = @JoinColumn(name = "category_id"))
-	private Set<Category> categories;
+	private Set<Category> categories = new HashSet<>();
 	
+	public Recipe() {
+		
+	}
+
+	public Recipe(String description, Integer prepTime, Integer cookTime, Integer servings, String source, String url,
+			String directions, Set<Ingredient> ingredient, Byte[] image, Difficulty difficulty, Notes notes,
+			Set<Category> categories) {
+		this.description = description;
+		this.prepTime = prepTime;
+		this.cookTime = cookTime;
+		this.servings = servings;
+		this.source = source;
+		this.url = url;
+		this.directions = directions;
+		this.ingredient = ingredient;
+		this.difficulty = difficulty;
+		this.notes = notes;
+		this.categories = categories;
+	}
+
 	public Long getId() {
 		return id;
 	}
