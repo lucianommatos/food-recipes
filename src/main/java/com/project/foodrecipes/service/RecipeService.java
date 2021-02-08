@@ -1,9 +1,11 @@
 package com.project.foodrecipes.service;
 
+import java.util.HashSet;
+
 import com.project.foodrecipes.model.Recipe;
 
 public interface RecipeService {
 	
-	public Iterable<Recipe> findAllRecipes();
+	public HashSet<Recipe> getRecipes();
 
 }
