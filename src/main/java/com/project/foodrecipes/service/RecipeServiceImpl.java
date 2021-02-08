@@ -1,5 +1,7 @@
 package com.project.foodrecipes.service;
 
+import java.util.HashSet;
+
 import org.springframework.stereotype.Service;
 
 import com.project.foodrecipes.model.Recipe;
@@ -15,8 +17,10 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public Iterable<Recipe> findAllRecipes() {
-		return recipeRepository.findAll();
+	public HashSet<Recipe> getRecipes() {
+		HashSet<Recipe> recipes = new HashSet<Recipe>();
+		recipeRepository.findAll().forEach(recipes::add);
+		return recipes;
 	}
 
 }
